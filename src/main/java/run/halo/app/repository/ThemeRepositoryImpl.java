@@ -76,10 +76,11 @@ public class ThemeRepositoryImpl
                         .map(Option::getValue)
                         .orElse(DEFAULT_THEME_ID);
 
+                    log.info("currentThemeIdcurrentThemeIdcurrentThemeId:{}", currentThemeId);
                     // fetch current theme
                     this.currentTheme =
                         this.fetchThemeByThemeId(currentThemeId).orElseGet(() -> {
-                            if (!StringUtils.equalsIgnoreCase(currentThemeId, DEFAULT_THEME_ID)) {
+                            if (StringUtils.equalsIgnoreCase(currentThemeId, DEFAULT_THEME_ID)) {
                                 fallbackTheme.set(true);
                                 return this.getThemeByThemeId(DEFAULT_THEME_ID);
                             }
